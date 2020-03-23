@@ -1,0 +1,41 @@
+if(isset($_SESSION['top_5_dna']) && $_SESSION['top_5_dna'] != false) { ?>
+		
+				<figure class="topFive" style="margin-top:15px;">
+					<figcaption style="font-size:35px;">Top 5 DnA</figcaption>
+					  <ol>
+						<?php foreach($_SESSION['top_5_dna'] as $restaurant) {  
+							$image_path = RestaurantDB::get_restaurant_logo($restaurant->getId());
+							if(!isset($image_path['path'])) {
+								$image_path['path'] = "images/dna.png";
+							}
+							?>
+							<li><a href="/DnA/show_restaurant?restaurant_id=<?php echo $restaurant->getId();?>">
+							  <img width="60" height="60" src="<?php echo $image_path['path'];?>" />
+							  <h3><?php echo $restaurant->getName();?></h3>
+							  <p><?php echo $restaurant->getDescription();?></p>
+							</li>
+						
+							</a>
+					<?php } ?>
+						</ol>
+				</figure>
+		
+				<figure class="topFive" style="margin-top:15px;">
+					<figcaption style="font-size:35px;">Top 5 Go Back Rating</figcaption>
+					 <ol>
+
+			<?php foreach($_SESSION['top_5_go_back'] as $restaurant) {  
+					$image_path = RestaurantDB::get_restaurant_logo($restaurant->getId());
+					if(!isset($image_path['path'])) {
+						$image_path['path'] = "images/dna.png";
+					}
+					?>
+					<li><a href="/DnA/show_restaurant?restaurant_id=<?php echo $restaurant->getId()?>">
+					  <img width="60" height="60" src="<?php echo $image_path['path'];?>" />
+					  <h3><?php echo $restaurant->getName();?></h3>
+					  <p><?php echo $restaurant->getDescription();?></p>
+						
+					</li>
+					</a>
+				<?php }  
+				}
