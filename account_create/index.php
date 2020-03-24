@@ -25,17 +25,23 @@ switch($action) {
 		$last_name = filter_input(INPUT_POST, 'last_name');
 		$email = filter_input(INPUT_POST, 'email');
 		$password = filter_input(INPUT_POST, 'password');
-		$_SESSION['email'] = $email;
-		$_SESSION['password'] = $password;
+		$passwordConf = filter_input(INPUT_POST, 'passwordConf');
+		//$_SESSION['email'] = $email;
+		//$_SESSION['password'] = $password;
 		
-		$id = UserDB::create_account($first_name, $last_name, $email, $password);
-		if($id != FALSE) {
-			$_SESSION['user'] = UserDB::log_user_in($_SESSION['email'], $_SESSION['password']);
-			header("Location: /DnA/");
-		} else {
-			$flag = FALSE;
-			include('create_account.php');
-		}	
+		$passwordFlag = $password == $passwordConf;
+		if($passwordFlag) {
+			$id = UserDB::create_account($first_name, $last_name, $email, $password);
+			if($id != FALSE) {
+				$_SESSION['user'] = UserDB::log_user_in($email, $password);
+				header("Location: /DnA/");
+			} else {
+				$flag = FALSE;
+			}
+		} 
+		include('create_account.php');
+		break;
+		
 }
 
 ?>

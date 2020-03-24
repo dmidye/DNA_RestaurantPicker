@@ -115,8 +115,10 @@ include 'view/header.php';
 					
 					<ul>
 						 <li>
-							<input class="field-style field-split align-left" type="email" name="email" placeholder="Enter email" required>
-							<input class="field-style field-split align-right" type="password" name="password" placeholder="Enter password" required>
+							<input class="field-style field-split align-left" type="email" name="email" placeholder="Enter email" 
+									value='<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>'required>
+							<input class="field-style field-split align-right" type="password" name="password" placeholder="Enter password" 
+									value='<?php echo isset($_POST['password']) ? $_POST['password'] : ''; ?>'required>
 						</li>
 						<li>
 							<input type="submit" value="Login">

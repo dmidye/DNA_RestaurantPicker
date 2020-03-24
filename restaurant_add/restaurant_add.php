@@ -41,7 +41,7 @@
 			</li>	
 			
 			<li>			
-				<input type="url" name="website"  class="field-style field-full" placeholder="Website"/>
+				<input type="url" name="website" class="field-style field-full" placeholder="Website"/>
 			</li>
 			
 			<li>			
